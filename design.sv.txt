@@ -1,0 +1,48 @@
+// Code your design here
+module alu_4bit (
+  input[3:0] A,
+  input [3:0] B,
+  input [2:0] opcode,
+  output reg [3:0] result,  
+  output reg carry_out
+);
+  
+localparam ADD = 3'b000;
+localparam SUB = 3'b001;
+localparam AND = 3'b010;
+localparam OR  = 3'b011;
+localparam NOT = 3'b100;
+  
+  always @(*) begin
+    carry_out = 1'b0;
+    
+    case(opcode)
+      
+      ADD: begin
+        {carry_out, result} = A+B;
+      end
+      
+      SUB: begin
+    result    = A - B;
+    carry_out = (A >= B) ? 1'b1 : 1'b0;
+end
+      
+      AND: begin
+        result = A & B;
+      end
+      
+      OR: begin
+        result = A | B;
+      end
+      
+      NOT: begin
+        result = ~A;
+      end
+      
+      default: begin
+        result = 4'b0000;
+        carry_out = 1'b0;
+      end
+    endcase
+  end
+endmodule
