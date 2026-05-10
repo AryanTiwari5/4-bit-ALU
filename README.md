@@ -124,5 +124,3 @@ hands-on experience with the RTL + verification workflow used in
 industry VLSI design.
 
 ---
-
-## Project Structure
